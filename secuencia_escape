@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    char sonidos = '\a';  // /a produce pitido 
+    char bs = '\b';
+    cout << sonidos;
+    cout << sonidos;
+    cout << sonidos;
+    cout << sonidos;
+    cout << "zz";
+    cout << bs;
+    cout << bs;
+}
