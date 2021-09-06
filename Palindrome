@@ -1,0 +1,48 @@
+// Programa que determina si un numero es palindromo
+
+#include <iostream>
+using namespace std;
+
+bool isPalindrome(int x, int size) {
+    //completa la función
+    int temp = x;
+    int arr[size];
+  
+ // de int a arreglo: 
+    for(int i = 0; i < size; i++) 
+    { 
+        arr[i] = temp % 10;
+        temp /= 10;
+    }
+ // de arreglo a int   
+    temp = 0;
+    for(int i = 0; i < size; i++)
+    { 
+        temp *= 10;
+        temp += arr[i];
+    }
+    
+    if(x == temp)
+     return true;
+    else 
+     return false; 
+    
+}
+
+int main() {
+    int n;
+    cin >>n;
+    int temp = n;
+    int count = 0;
+    do{ 
+      temp /= 10;
+      count ++;
+    }while(temp != 0);
+    if(isPalindrome(n,count)) {
+        cout <<n<<" is a palindrome";
+    }
+    else {
+        cout << n<<" is NOT a palindrome";
+    }
+    return 0;
+}
