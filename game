@@ -1,53 +1,103 @@
-//  jueguito 
-
 #include <iostream>
-using namespace std;
 
-void DrawMap(int HeroPos, char map[5]){
+char ask_move() {
+  char lastMove;
   
-   for(int i=0; i<5; i++){
-     
-       if(i != HeroPos){
-           
-             cout<<map[i];
-           
-       }
-       else{
-           
-             cout<<'H';
-           
-     }
-   }
-   
+  std::cout << "Up/Down/Left/Right (u/d/l/r): ";
+  std::cin >> lastMove;
+
+  return lastMove;
 }
 
-int main()
-{
-   
-   int HeroPos = 0;
-   char GameMap[5] = {'1','1','1','1','1'};
-   char input = ' ';
-   bool GameOver = false;
-   
-DrawMap(HeroPos, GameMap);
+void draw_world(
+  int lives, char map[3][3],
+  int heroPosRow, int heroPosCol
+) {
+  std::cout << "\n";
 
+  std::cout << "Vidas: " << lives << "\n";
 
-while(GameOver == false){
-cin >> input;
-   if(input == 'd'){
-       
-       HeroPos++;
-   }
-   else if(input == 'a'){
-       
-       HeroPos--;
-   }
-   else{
-       GameOver = true;
-       cout <<"Game Over";
-   }
-   DrawMap(HeroPos, GameMap);
+  // MAPA BIDIMENSIONAL
+  for (int row = 0; row < 3; row++) {
+    // Salto de linea por cada row
+    std::cout << "\n";
+
+    for (int col = 0; col < 3; col++) {
+      char rowColPos = map[row][col];
+
+      if (heroPosRow == row && heroPosCol == col) {
+        std::cout << "X";
+      } else {
+        std::cout << rowColPos;
+      }
+    }
+  }
+
+  std::cout << "\n\n";
 }
- 
-    return 0;
+
+int main() {
+  std::cout << "Hello World!\n";
+
+  char map[3][3] = {
+    {'-', '-', '-'},
+    {'o', '-', '-'},
+    {'-', '-', 'o'},
+  };
+  int heroPosRow = 0;
+  int heroPosCol = 0;
+  char lastMove = ' ';
+  int lives = 5;
+
+  do {
+    draw_world(
+      lives, map,
+      heroPosRow, heroPosCol
+    );
+
+    char move = ask_move();
+
+    switch (move) {
+      case 'u':
+        if ((heroPosRow - 1) < 0) {
+          std::cout << "\nNO TE PUEDES SALIR DEL MAPA\n";
+          lives--;
+        } else {
+          heroPosRow--;
+        }
+      break;
+
+      case 'd':
+        if ((heroPosRow + 1) > 2) {
+          std::cout << "\nNO TE PUEDES SALIR DEL MAPA\n";
+          lives--;
+        } else {
+          heroPosRow++;
+        }
+      break;
+
+      case 'l':
+        if ((heroPosCol - 1) < 0) {
+          std::cout << "\nNO TE PUEDES SALIR DEL MAPA\n";
+          lives--;
+        } else {
+          heroPosCol--;
+        }
+      break;
+
+      case 'r':
+        if ((heroPosCol + 1) > 2) {
+          std::cout << "\nNO TE PUEDES SALIR DEL MAPA\n";
+          lives--;
+        } else {
+          heroPosCol++;
+        }
+      break;
+
+      default: std::cout << "Vuelve a intentarlo.";
+      break;
+    }
+  } while (lives > 0);
+
+  std::cout << "\nGAME OVER!\n";
 }
