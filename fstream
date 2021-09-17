@@ -1,4 +1,4 @@
-// Lectura, escritura y creacion de un archivo 
+// lectura, escritura y creacion de un archivo 
 
 #include <iostream>
 #include <fstream>
