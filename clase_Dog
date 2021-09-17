@@ -44,3 +44,5 @@ int main()
     PerroDos.Bark();
 
 }
+
+// Por lo que mName es privado solo se puede modificar a traves de SetName 
