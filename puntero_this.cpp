@@ -22,13 +22,15 @@ class Person {
     cout << "Destruction" << endl;
   }
   
-  void cambiar_nombre(string name)
+  Person &cambiar_nombre(string name)
   {
     this -> name = name; 
+    return *this;
   }
-  void cambiar_edad(int age)
+  Person &cambiar_edad(int age)
   {
     this -> age = age; 
+    return *this;
   }
   
   void say_hi() 
@@ -40,8 +42,7 @@ class Person {
 int main() {
   Person *p = new Person("Zero", 14);
   p -> say_hi();
-  p -> cambiar_nombre("Sofia");
-  p -> cambiar_edad(20);
+  p -> cambiar_nombre("Sofia").cambiar_edad(20);
   p -> say_hi();
   delete p;
  }
