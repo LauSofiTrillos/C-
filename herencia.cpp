@@ -1,3 +1,4 @@
+// ejemplo de herencia
 #include <iostream>
 #include <string>
 
