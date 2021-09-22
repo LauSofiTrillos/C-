@@ -9,11 +9,8 @@ public:
   int age;
   
   // constructor 
-  Person(string n, int a)
-  {
-    name = n;
-    age = a;
-  }
+  Person(string n, int a) : name(n), age(a) 
+  {}
   // destructor 
   ~Person()
   { 
@@ -21,13 +18,11 @@ public:
   }
   void say_hi() 
   { 
-    cout << name << endl; 
+    cout << name << endl << age << endl; 
   }
 };
 
 int main() {
   Person p = Person("Zero", 14);
   p.say_hi();
-  
-  
-}
+ }
